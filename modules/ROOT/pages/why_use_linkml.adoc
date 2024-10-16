@@ -1,0 +1,13 @@
+= Why Use LinkML?
+
+== Requirements for Model Driven Development
+
+Engaging in Model Driven Development imposes a specific requirements on the modeling language(s) used, most notably *machine readability* and *sufficient expressivity* for expressing a model which can act as a single source of truth for generating a variety of (technical) artefacts.
+
+Furthermore, if these data models are going to be maintained by teams who produce or consume the data, further requirements are imposed on the modeling language if this way of working is truly expected to be adopted and scale, namely *decent tooling* and/or
+
+
+== Why LinkML Instead of Alternatives
+
+The official LinkML documentation provides an extensive FAQ which features exactly the question: "https://linkml.io/linkml/faq/why-linkml.html#[Why LinkML]". There you'll find a comparison between LinkML and alternatives such as UML and JSON Schema.
+

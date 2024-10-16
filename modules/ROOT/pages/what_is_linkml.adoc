@@ -1,0 +1,25 @@
+= What is LinkML?
+
+LinkML is a data modeling language with first-class support Linked Data, or as the official documentation puts it:
+
+[quote,'https://linkml.io/linkml/index.html[LinkML Documentation]'']
+--
+LinkML, the Linked Data Modeling Language.
+
+LinkML is a flexible modeling language that allows you to author schemas in YAML that describe the structure of your data. Additionally, it is a framework for working with and validating data in a variety of formats (JSON, RDF, TSV), with generators for compiling LinkML schemas to other frameworks.
+--
+
+'''
+
+Using LinkML you can author and maintain your data model in a single place and generate a variety of manifestations for use in your developing. This means you don't have to manually write or maintain your database schema, data classes and API schema anymore, but can generate all of these by maintaining only your LinkML schema.
+
+The LinkML modeling language is written in the familiar and accessible YAML syntax, making it easy to learn and use. This also makes it possible (and easy) to have a LinkML schema be tracked in a VCS solution, or even be made part of an existing software project as to avoid complicated new processes and tooling.
+
+Furthermore, LinkML has native support for xref::terms_and_defs.adoc#ld[Linked Data], including features such:
+
+* SKOS mappings to relate model elements to thesauri
+* URI mappings for indicating semantic correspondence with ontologies around the world
+* Generate OWL and SHACL models, as well as JSON-LD contexts
+* Transform instance data to RDF or JSON-LD
+
+For these reasons, LinkML is also a very good choice if you wish to standardize the meaning of your data, share data with external partners or construct knowledge graphs for further analysis and enhancing of AI technology.

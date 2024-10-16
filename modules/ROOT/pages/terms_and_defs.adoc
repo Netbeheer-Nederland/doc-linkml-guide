@@ -1,0 +1,4 @@
+= Terms and Definitions
+
+[[ld]] Linked Data, LD::
+A philosophy comprised of a set of principles intended to improve the ability to link data and data models from all around the world. (See also: https://www.w3.org/DesignIssues/LinkedData.html[Design Issues -Linked Data].)

@@ -23,3 +23,5 @@ Furthermore, LinkML has native support for xref::terms_and_defs.adoc#ld[Linked D
 * Transform instance data to RDF or JSON-LD
 
 For these reasons, LinkML is also a very good choice if you wish to standardize the meaning of your data, share data with external partners or construct knowledge graphs for further analysis and enhancing of AI technology.
+
+The LinkML documentation does an excellent job to explain the purpose and capabilities of the project as well. See: https://linkml.io/linkml/intro/overview.html#linkml-at-a-glance[LinkML at a glance].

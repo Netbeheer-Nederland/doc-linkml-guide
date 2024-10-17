@@ -1,9 +1,13 @@
 = Terms and Definitions
-:bib-studer-1998: Studer 1998; http://dx.doi.org/10.1016/S0169-023X(97)00056-6[10.1016/S0169-023X(97)00056-6]
 
 [[ld]] Linked Data, LD::
     A philosophy comprised of a set of principles intended to improve the ability to link data and data models from all around the world. +
     See also: https://www.w3.org/DesignIssues/LinkedData.html[Design Issues -Linked Data].
 
 [[ontology]] ontology::
-    "An ontology is a formal, explicit specification of a shared conceptualization." [{bib-studer-1998}]
+    An ontology is a formal, explicit specification of a shared conceptualization. [<<ref-studer-1998,Studer, 1998>>]
+
+[bibliography]
+== References
+
+* [[ref-studer-1998]] Studer 1998; http://dx.doi.org/10.1016/S0169-023X(97)00056-6[10.1016/S0169-023X(97)00056-6]

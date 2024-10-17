@@ -63,6 +63,8 @@ Use cases that benefit from these LD capabilities include:
 
 == Toolchain
 
+Besides the LinkML modeling language, the project ships a variety of tools out of the box. Furthermore, the community provides additional tools.
+
 === Code generation
 
 .Generating code and documentation

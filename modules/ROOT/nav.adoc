@@ -1,21 +1,20 @@
-* xref::index.adoc[LinkML Guide]
-** What is LinkML?
-** Why use LinkML?
-*** Model Driven Development
-*** Code Based Data Models
-*** Linked Data Support
-** Information Modeling in LinkML
-*** Metamodel Overview
-*** Usage Notes and Caveats
-** How to Use LinkML for Data Modeling
-*** Classes Represent Entity Types
-**** Inheritance
-**** Using Slots
-***** Refining Slot Usage
-*** Slots and Attributes Represent Properties
-**** What's the Difference Between a Slot and an Attribute?
-**** When to Use Which?
-*** Enumerations
-*** Semantic Mappings With Linked Data
-**** Ontology Alignment
-**** Thesaurus Alignment
+* xref::what_is_linkml.adoc[]
+* xref::when_to_use_linkml.adoc[]
+** Model Driven Development
+** Code Based Data Models
+** Linked Data Support
+* Data Modeling in LinkML
+** Metamodel Overview
+** Usage Notes and Caveats
+* How to Use LinkML for Data Modeling
+** Classes Represent Entity Types
+*** Inheritance
+*** Using Slots
+**** Refining Slot Usage
+** Slots and Attributes Represent Properties
+*** What's the Difference Between a Slot and an Attribute?
+*** When to Use Which?
+** Enumerations
+** Semantic Mappings With Linked Data
+*** Ontology Alignment
+*** Thesaurus Alignment

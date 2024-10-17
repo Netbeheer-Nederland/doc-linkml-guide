@@ -1,7 +1,8 @@
 = What LinkML is
 :fn-generation-caveats: footnote:[Code generation can be great, but it can also be a rigid commitment. For simple modeling demands, a fully automated generation process is feasible. However, there will also be cases which demand highly advanced or specific modeling requirements, in which case code generation might only be used for bootstrapping.]
-:fn-jsonld-poc-bartkl: footnote:[If you are interested in this feature, you can contact mailto:bart.kleijngeld@alliander.com[Bart Kleijngedl], who has done some work to prove this concept works.]
 
+
+== Modeling language
 LinkML is a *data modeling language* with first-class support for xref::terms_and_defs.adoc#ld[Linked Data], or as the official documentation puts it:
 
 [quote,'https://linkml.io/linkml/index.html[LinkML Documentation]'']
@@ -11,51 +12,104 @@ LinkML, the Linked Data Modeling Language.
 LinkML is a flexible modeling language that allows you to author schemas in YAML that describe the structure of your data. Additionally, it is a framework for working with and validating data in a variety of formats (JSON, RDF, TSV), with generators for compiling LinkML schemas to other frameworks.
 --
 
-== The LinkML data modeling language
+=== Language-agnosticism
 
+One of the core ideas of LinkML is to have a language that allows you to model your data without having to bother with technical implementation details and language constructs. For example, I might want to specify in my model that `salary` has values of a numerical type, but I'm not interested in the technical implementation of the floating point number type used.
 
-== Code generation
+=== Models as code
 
-// TODO: Insert diagram here.
+Having models represented as code enables the leveraging of existing tools and workflows for maintaining and working with the model. In particular, it avoids the dependency on specialized and costly tools, and minimizes the amount of processes that have to be designed.
 
-Using LinkML you can author and *maintain your data model in a single place* (the LinkML schema) and generate a variety of technical manifestations for use in development. This means you don't have to manually write or maintain your database schema, data classes and API schema anymore, but can generate all of these by maintaining only your LinkML schema. {fn-generation-caveats}
+=== Easy to author
 
-Using LinkML you can author and *maintain your data model in a single place* (the LinkML schema) and generate a variety of technical manifestations for use in development. This means you don't have to manually write or maintain your database schema, data classes and API schema anymore, but can generate all of these by maintaining only your LinkML schema. {fn-generation-caveats}
+The LinkML modeling language is written in the familiar and accessible YAML syntax, making it easy to learn and use. Existing text editors, IDEs and other tooling can be used for editing LinkML schemas.
 
-=== Documentation generation
+=== Versioning with VCS
+
+Furthermore, versioning schemas can be done using a VCS like Git. You can even choose to make the schema part of an existing software project and version it in tandem if that makes sense.
+
+=== Automating tasks
+
+The code-based nature of the schema also makes it possible to automate processes involving it. For example, model validation and code generation could be executed automatically as part of a CI/CD pipeline.
+
+=== Linked Data support
+
+[NOTE]
+If you don't know what Linked Data is or don't intend to make use of it, feel free to ignore the support for it and use LinkML for its other features and merits.
+
+LinkML has native support for xref::terms_and_defs.adoc#ld[Linked Data], allowing for the mapping of model elements to URIs.
+
+.Mapping of local names to LD URIs
+image::linkml_schema_ld_mapping.png[]
+
+==== Relating to concepts in thesauri
+
+There is https://linkml.io/linkml/schemas/uris-and-mappings.html#mappings[native support] for https://www.w3.org/TR/skos-reference/[SKOS] mappings to relate model elements to thesauri.
+
+==== Standardization through use of ontologies
+
+Using https://linkml.io/linkml/schemas/uris-and-mappings.html#class-uri-and-slot-uri[class and slot URIs] in particular, you can reference existing definitions in ontologies to indicate -- and standardize -- the meaning of your data.
+
+[NOTE]
+In the realm of Linked Data, ontologies are usually expressed in either https://www.w3.org/TR/rdf11-schema/[RDF Schema] (RDFS) or the https://linkml.io/linkml/schemas/uris-and-mappings.html#class-uri-and-slot-uri[Web Ontology Language] (OWL).
+
+[TIP]
+--
+Use cases that benefit from these LD capabilities include:
+
+* Want your data to describe its meaning conforming some reference standard(s) to aid in sharing data with external partners.
+* Construct knowledge graphs for further analysis or to enhance the performance and capabilities of AI technology.
+--
+
+== Toolchain
+
+=== Code generation
+
+.Generating code and documentation
+image::linkml_code_generation.png[]
+
+Using LinkML you can author and *maintain your data model in a single place* (the LinkML schema) and generate a variety of technical manifestations for use in development. This means you don't have to manually write or maintain your database schema, data classes and API schema anymore, but can generate all of these by maintaining only your LinkML schema.{fn-generation-caveats}
+
+==== Generation of Linked Data models
+
+In particular, LinkML offers generators for Linked Data modeling languages such as OWL, https://www.w3.org/TR/shacl/[SHACL] and https://shex.io/[ShEx], as well as for https://www.w3.org/TR/json-ld/[JSON-LD] contexts.
+
+==== Web documentation generation
 
 Besides the ability to generate technical schemas and code, LinkML also supports generating diagrams and documentation.
 
 For an elaborate example of generated documentation, check out the https://netbeheer-nederland.github.io/im-cgmes/[ENTSO-E CGMES profiles] documentation maintained by Netbeheer Nederland.
 
-== Models as code
+=== Converting data
 
-=== Use of existing tools
+Given a data set and a LinkML schema it conforms to, you can use the `linkml-convert` tool to convert the data between a variety of syntaxes, such as RDF, CSV, JSON and JSON-LD.
 
-The LinkML modeling language is written in the familiar and accessible YAML syntax, making it easy to learn and use. Existing text editors, IDEs and other tooling can be leveraged for editing LinkML schemas.
+==== From plain data to Linked Data
 
-=== Versioning and automation
+If the LinkML schema provides URI mappings, it is possible to generate RDF from non-LD data.
 
-Furthermore, versioning schemas can be done using a VCS like Git. You can even choose to make the schema part of an existing software project and version it in tandem if that makes sense.
+[TIP]
+Further elaboration of how to achieve this is beyond the scope of this guide. If you want to learn more, you can contact mailto:bart.kleijngeld@alliander.com[Bart Kleijnged] who has done some work to prove this concept works.
 
-The code-based nature of the schema also makes it possible to automate processes involving it. For example, model validation and code generation could be executed automatically as part of a CI/CD pipeline.
+=== Data validation
 
-Models as code avoids the dependency on specialized and costly tools, and minimizes the amount of processes that have to be designed.
+LinkML also offers the `linkml-validate` tool for validating whether given data conforms to a given LinkML schema.
 
-== Linked Data support
+== Open source
 
-LinkML has native support for xref::terms_and_defs.adoc#ld[Linked Data], including features such:
+The entirety of the LinkML ecosystem -- to my knowledge -- is open source. If you like to contribute to the project, check out the https://linkml.io/linkml/contributing/contributing.html[Contribution Guidelines].
 
-* Support for SKOS mappings to relate model elements to thesauri.
-* Support for URI mappings to indicate semantic correspondence with ontologies.
-* Generation of OWL and SHACL models, as well as JSON-LD contexts.
-* Transformation of plain instance data to semantically enriched RDF or JSON-LD. {fn-jsonld-poc-bartkl}
+=== Active and helpful community
 
-This makes LinkML a good choice if you intend to:
+LinkML is under active development, and input from its users is taken seriously.
 
-* Want your data to describe its meaning conforming some reference standard(s) to aid in sharing data with external partners.
-* Construct knowledge graphs for further analysis or to enhance the performance and capabilities of AI technology.
+If you need help or want to help out, you can get in contact with core developers and other members in a variety of places. Refer to the documentation for more details: https://linkml.io/linkml/faq/contributing.html#how-do-i-stay-involved[How do I stay involved?].
+
+=== Extendability
+
+Given that the source code is publicly available, you are free to make use of the code to enhance or extend it. If your modifications or extensions benefit the wider LinkML community, it is of course encouraged to contribute by creating a pull request.
 
 == Further reading
 
-The LinkML documentation does an excellent job to explain the purpose and capabilities of the project as well. See: https://linkml.io/linkml/intro/overview.html#linkml-at-a-glance[LinkML at a glance].
+* The LinkML documentation does an excellent job to explain the purpose and capabilities of the project as well. See: https://linkml.io/linkml/intro/overview.html#linkml-at-a-glance[LinkML at a glance].
+* The https://linkml.io/linkml/faq/index.html[official documentation FAQ] is a great resource as well.

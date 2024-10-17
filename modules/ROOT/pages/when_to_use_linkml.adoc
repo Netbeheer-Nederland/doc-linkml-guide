@@ -1,4 +1,4 @@
-= Why Use LinkML?
+= When to Use LinkML
 
 == Requirements for Model Driven Development
 

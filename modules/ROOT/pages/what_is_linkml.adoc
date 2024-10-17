@@ -48,7 +48,7 @@ There is https://linkml.io/linkml/schemas/uris-and-mappings.html#mappings[native
 
 ==== Standardization through use of ontologies
 
-Using https://linkml.io/linkml/schemas/uris-and-mappings.html#class-uri-and-slot-uri[class and slot URIs] in particular, you can reference existing definitions in ontologies to indicate -- and standardize -- the meaning of your data.
+Using https://linkml.io/linkml/schemas/uris-and-mappings.html#class-uri-and-slot-uri[class and slot URIs] in particular, you can reference existing definitions in xref::terms_and_defs.adoc#ontology[ontologies] to indicate -- and standardize -- the meaning of your data.
 
 [NOTE]
 In the realm of Linked Data, ontologies are usually expressed in either https://www.w3.org/TR/rdf11-schema/[RDF Schema] (RDFS) or the https://linkml.io/linkml/schemas/uris-and-mappings.html#class-uri-and-slot-uri[Web Ontology Language] (OWL).

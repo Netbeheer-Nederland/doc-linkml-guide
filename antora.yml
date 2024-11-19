@@ -1,6 +1,5 @@
 name: linkml-guide
 title: LinkML Guide
 version: true
-prerelease: "-draft"
 nav:
 - modules/ROOT/nav.adoc

@@ -1,0 +1,87 @@
+= Modeling Quantities and Units
+
+== Data types in the canonical CIM
+In the canonical CIM two kinds of data types are defined:
+
+* _Primitive_. These are primitive data types.
+* _CIM data type_. These are structured data types which consist of a _value_, _unit symbol_ and _unit multiplier_.
+
+Each of these data types is represented as a class of an associated stereotype, namely `Primitive` and `CIMDatatype` respectively.
+
+.The `CurrentFlow` CIM data type
+====
+[plantuml]
+----
+@startuml
+class CurrentFlow {
+value
+symbol
+multiplier
+}
+@enduml
+----
+
+A measurement of a current of 2 mA could look something like this:
+[source,yaml]
+----
+  measurement:
+    value: 2.0
+    symbol: A
+    multiplier: m
+----
+====
+
+=== Use in technical models
+
+==== Primitives
+
+Primitives can usually be mapped trivially onto counterparts in the metamodel of the technocal model. For example, strings and floats are supported ubiquitously.
+
+==== CIM data types
+
+CIM data types are trickier to represent in technical models. Either the technical metamodel does not provide support for classes this way, or there is support but working with such complex values is so tedious that many vendors and developers choose not to go that route.
+
+====
+In Python, making use of the CIM data type in instance data would look something like the following:
+
+[source,python]
+----
+terminal1 = Terminal(
+    flow=CurrentFlow(
+        value=2.0,
+        symbol=UnitSymbol.A,
+        multiplier=UnitMultiplier.m
+    )
+)
+----
+
+This might not seem too bad, but having to specify this for many data points can become tedious. Also, doing calculations and serializations is less straightforward than with the plain and simple:
+
+[source,python]
+----
+terminal1 = Terminal(flow=2.0)
+----
+
+Documentation would then provide the extra information regarding the unit used. Of cours this approach has its own downsides, such as units not being machine-readable, severely limiting automated computations.
+====
+
+=== Simpler values but rich metadata
+
+Get rid of the class representation, and indeed make the values simple values of the underlying primitive data type.
+
+However, add extra
+
+==== No data type classes
+
+==== Standardization with QUDT
+
+== Modeling in LinkML
+
+Suppose we have
+
+
+
+
+[bibliography]
+== References
+* [[[LINKML-GUIDE-QUANTITIES-MEASUREMENTS]]] https://linkml.io/linkml/howtos/model-measurements.html#qudt[How to model quantities and measurements], LinkML Authors

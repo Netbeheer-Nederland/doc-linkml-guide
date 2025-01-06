@@ -24,12 +24,11 @@ Plenty of people understand the importance of standardization, but what exactly 
 
 .CIM data types
 ====
-
-
-
-
-
 The CIM has defined custom data types ("CIM data types") which are modeled as classes in the official UML model. However, many vendors choose not to implement these data types as classes or some other compound structure, but represent them as simple primitives.
+
+Do these vendors conform to the standard?
+
+Technically, the answer is simply "no", but
 
 Is this deviating from the standard? It seems to be, but then again, some technical languages might not even be able to represent compound structures at all, in which case TODO
 ====
@@ -38,7 +37,11 @@ In the case of the
 
 === Semantic compliance
 
-The ca
+* Model elements mean what they are described to mean, and no liberties or deviations are allowed.
+* Using the right semantic perspectives for the job, including choosing the appropriate standard.
+
+NOTE: These compliance rules are heavily influenced by the canonical CIM being modeled in UML, which is a modeling language for primarily defining structures and constraints, and has only very limited capabilities for expressing semantics. Contrast this to the Web Ontology Language (OWL) for example, which would have allowed for much more precisely defined compliance rules.
+
 
 
 
@@ -161,7 +164,7 @@ One way to extend the CIM is to consider the primary and secondary usage points 
 * `cim:SecondaryUsagePoint` is a subclass of `cim:UsagePoint`.
 
 .Using subclasses for explicit discernment
-image::ex_usagepoint_subclass.excalidraw.svg[]
+image::ex_usagepoint_subclass.excalidraw.svg[width=70%]
 
 ==== Considerations
 

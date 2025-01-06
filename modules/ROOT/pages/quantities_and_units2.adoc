@@ -1,0 +1,148 @@
+= Modeling Measurements with Quantities and Units
+
+== Goals
+
+Describing the quantity kinds and units used:
+
+* explicit
+** the data and/or data model should express quantity kinds and units used
+** assumptions to be made or conventions shared between users is not sufficient
+* machine-readable
+** machines should be able to work with the data without human intervention
+** merely human-readable documentation or comments is not sufficient
+* flexible
+** possibility of specifying different units for the same quantity kind for different data points
+** fixing units at the profile level might serve as a handy default
+** fixing units at the vocabulary level should never be done
+* workable
+** complex or specific technology dependent representations inhibit support for representation in less expressive languages
+** easier to use is preferred if possible, but is gladly sacrificed if improved machine-readable expressiveness is gained because of it
+** file size can become excessive once the maximal flexible approach of annotating (almost) exclusively specific data points with quantity and unit information
+
+== Candidate modeling idioms
+
+=== Custom type
+
+Let's take an example modeling problem involving two measurements within one dataset, and see how a variety of modeling approaches stack up against each other in regard to the goal.
+
+====
+Suppose we have:
+
+* switch 1 with a rated current of 400.0 A
+* switch 2 with a rated current of 1.1 MA
+====
+
+Let's see how we can represent this.
+
+=== Quantity kind as class
+
+==== Representations
+
+===== LinkML
+
+====== Model
+
+[source,yaml]
+----
+classes:
+  CurrentFlow:
+    attributes:
+      unit:
+        range: UnitSymbol
+      multiplier:
+        range: UnitMultiplier
+      value:
+        range: float
+
+  Switch:
+    attributes:
+      rated_current:
+        range: CurrentFlow
+
+enums:
+  UnitSymbol:
+    permissible_values:
+      A:
+  UnitMultiplier:
+    permissible_values:
+      none:
+      M:
+----
+
+====== Data
+
+[source,yaml]
+----
+switch1:
+  type: Switch
+  rated_current:
+    value: 400.0
+    symbol: UnitSymbol.A
+    multiplier: UnitMultiplier.none
+switch2:
+  type: Switch
+  rated_current:
+    value: 1.1
+    symbol: UnitSymbol.A
+    multiplier: UnitMultiplier.M
+----
+
+===== Python
+
+====== Model
+
+[source,python]
+----
+class UnitSymbol(Enum):
+    A = "Ampere"
+
+class UnitMultiplier(Enum):
+    none = ""
+    M = "mega"
+
+@dataclass
+class CurrentFlow(CIMDatatype):
+    unit: UnitSymbol
+    multiplier: UnitMultiplier
+    value: float
+
+@dataclass
+class Switch:
+    rated_current: CurrentFlow
+----
+
+====== Data
+
+[source,python]
+----
+switch1 = Switch(current_flow=CurrentFlow(
+    unit=UnitSymbol.A,
+    multiplier=UnitMultiplier.none,
+    value=400.0))
+
+switch2 = Switch(current_flow=CurrentFlow(
+    unit=UnitSymbol.A,
+    multiplier=UnitMultiplier.M,
+    value=1.1))
+----
+
+===== SHACL
+
+==== Evaluation
+
+[cols="h,1,1,1,1"]
+|===
+| | Explicit | Machine-readable | Flexible | Workable
+
+| Quantity kind as class
+| yes
+| yes
+| no
+| no
+
+|===
+
+==== Further notes
+
+* Choosing completely inadequate units is permitted by the schema this way, e.g. choosing 400 kilograms of current.
+* Classes should be used to represent concepts from the domain of discourse, not data types. Inelegance such as this always comes back to haunt you, such as causing cluttered documentation by having the index of classes include data types.
